@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2b77c09b42d8c4ab13dfff2e19dc6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myRadar: {fileID: 8173822509669005193}
 --- !u!61 &8173822510830158408
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -255,3 +256,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2857624023011175652, guid: 21b66af2e5157b544ae4733667bae76e, type: 3}
   m_PrefabInstance: {fileID: 6252986040489712495}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8173822509669005193 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2857624023011175654, guid: 21b66af2e5157b544ae4733667bae76e, type: 3}
+  m_PrefabInstance: {fileID: 6252986040489712495}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca111fcae9b70124cae0ab5940fe5b1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

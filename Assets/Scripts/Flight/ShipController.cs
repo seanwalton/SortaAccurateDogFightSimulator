@@ -8,13 +8,19 @@ public class ShipController : MonoBehaviour
     [SerializeField] private Transform myForward;
     [SerializeField] private float mySpeed;
     [SerializeField] private float maxRotationSpeed;
-    [SerializeField] private Transform myTarget;
-
+    
+    private Vector2 myTarget = new Vector2(0f, 0f);
     private Rigidbody2D rb2D;
     private float currentRotationSpeed = 0f;
     private float signedAngle;
     private Vector2 toTarget = new Vector2();
     private Transform myTransform;
+
+
+    public void SetTarget(Vector2 newTarget)
+    {
+        myTarget = newTarget;
+    }
 
     private void Awake()
     {
@@ -24,8 +30,7 @@ public class ShipController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        UpdateVelocity();
-        
+        UpdateVelocity();      
         UpdateRotation();
     }
 
@@ -36,8 +41,8 @@ public class ShipController : MonoBehaviour
 
     private void UpdateRotation()
     {
-        toTarget.x = myTarget.position.x - myTransform.position.x;
-        toTarget.y = myTarget.position.y - myTransform.position.y;
+        toTarget.x = myTarget.x - myTransform.position.x;
+        toTarget.y = myTarget.y - myTransform.position.y;
 
         signedAngle = Vector2.SignedAngle(myForward.up, toTarget);
 

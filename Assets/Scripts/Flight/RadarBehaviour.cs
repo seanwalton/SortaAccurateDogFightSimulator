@@ -5,7 +5,26 @@ using UnityEngine;
 public class RadarBehaviour : MonoBehaviour
 {
     private List<GameObject> ships = new List<GameObject>();
+    private Transform trTemp;
+    private Vector2 centroid;
 
+    public Vector2? ShipCentroid()
+    {
+        if (ships.Count == 0) return null;
+
+        centroid = new Vector2(0f, 0f);
+        for (int i = 0; i < ships.Count; i++)
+        {
+            trTemp = ships[i].transform;
+            centroid.x += trTemp.position.x;
+            centroid.y += trTemp.position.y;
+        }
+
+        centroid.x /= ships.Count;
+        centroid.y /= ships.Count;
+
+        return centroid;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
