@@ -44,8 +44,9 @@ GameObject:
   - component: {fileID: 8173822510830158410}
   - component: {fileID: 8173822510830158411}
   - component: {fileID: 8173822510830158408}
+  - component: {fileID: 7496808516107735957}
   m_Layer: 3
-  m_Name: Fighter
+  m_Name: Fighter_Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,7 +155,6 @@ MonoBehaviour:
   myForward: {fileID: 8173822509990619319}
   mySpeed: 5
   maxRotationSpeed: 100
-  myTarget: {fileID: 0}
 --- !u!114 &8173822510830158411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +194,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.124415874, y: 0.29848126}
   m_EdgeRadius: 0
+--- !u!114 &7496808516107735957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8173822510830158406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 320f869636b2ab349bd29c1eba3b45a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: 1
 --- !u!1001 &6252986040489712495
 PrefabInstance:
   m_ObjectHideFlags: 0

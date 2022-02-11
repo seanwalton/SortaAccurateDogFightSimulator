@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6283803152742537493
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7496808516107735957, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}
+      propertyPath: faction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8173822510830158404, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1850386660974449023, guid: 8774f14f32cd9dd4689bfc9bca56559c, type: 3}
+    - target: {fileID: 8173822510830158405, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8173822510830158405, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8173822510830158405, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8173822510830158405, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8173822510830158405, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8173822510830158405, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8173822510830158405, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8173822510830158405, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8173822510830158405, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8173822510830158405, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8173822510830158405, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8173822510830158406, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}
+      propertyPath: m_Name
+      value: FighterBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 8173822510830158408, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.375
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}

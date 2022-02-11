@@ -4,6 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(ShipController))]
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(FactionType))]
 public class FighterBehaviour : MonoBehaviour
 {
 
@@ -13,6 +14,7 @@ public class FighterBehaviour : MonoBehaviour
     private Transform cameraTransform;
     private SpriteRenderer myRenderer;
     private Transform myTransform;
+    private Faction myFaction;
 
     private void Awake()
     {
@@ -20,6 +22,7 @@ public class FighterBehaviour : MonoBehaviour
         cameraTransform = Camera.main.transform;
         myRenderer = GetComponent<SpriteRenderer>();
         myTransform = transform;
+        myFaction = GetComponent<FactionType>().Faction;
     }
 
     private void FixedUpdate()
@@ -29,7 +32,7 @@ public class FighterBehaviour : MonoBehaviour
 
     private void UpdateTarget()
     {
-        myTarget = myRadar.ShipCentroid();
+        myTarget = myRadar.ShipCentroid(myFaction);
 
         if (myTarget.HasValue)
         {

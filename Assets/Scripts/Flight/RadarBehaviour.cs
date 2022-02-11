@@ -5,7 +5,9 @@ using UnityEngine;
 public class RadarBehaviour : MonoBehaviour
 {
     private List<GameObject> ships = new List<GameObject>();
+    private FactionType factionTemp;
     private Transform trTemp;
+    private int numShips;
     private Vector2 centroid;
 
     public Vector2? ShipCentroid()
@@ -25,6 +27,37 @@ public class RadarBehaviour : MonoBehaviour
 
         return centroid;
     }
+
+    public Vector2? ShipCentroid(Faction faction)
+    {
+        
+        numShips = 0;
+
+        centroid = new Vector2(0f, 0f);
+        for (int i = 0; i < ships.Count; i++)
+        {
+            factionTemp = ships[i].GetComponent<FactionType>();
+            if (factionTemp)
+            {
+                if (factionTemp.Faction == faction)
+                {
+                    trTemp = ships[i].transform;
+                    centroid.x += trTemp.position.x;
+                    centroid.y += trTemp.position.y;
+                    numShips++;
+                }
+            }
+            
+        }
+
+        if (numShips == 0) return null;
+
+        centroid.x /= numShips;
+        centroid.y /= numShips;
+
+        return centroid;
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
