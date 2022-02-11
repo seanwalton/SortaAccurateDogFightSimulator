@@ -9,6 +9,52 @@ public class RadarBehaviour : MonoBehaviour
     private Transform trTemp;
     private int numShips;
     private Vector2 centroid;
+    private Transform tr;
+    private float dist;
+    private int closestI;
+    private float distI;
+
+    private void Awake()
+    {
+        tr = transform;
+    }
+
+    public bool AnyEnemys(Faction myFaction)
+    {
+        for (int i = 0; i < ships.Count; i++)
+        {
+            factionTemp = ships[i].GetComponent<FactionType>();
+            if (factionTemp.Faction != myFaction)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public Vector2? GetClosestEnemy(Faction myFaction)
+    {
+        dist = float.MaxValue;
+        closestI = -1;
+
+        for (int i = 0; i < ships.Count; i++)
+        {
+            factionTemp = ships[i].GetComponent<FactionType>();
+            if (factionTemp.Faction != myFaction)
+            {
+                distI = Vector2.Distance(ships[i].transform.position, tr.position);
+                if (distI < dist)
+                {
+                    dist = distI;
+                    closestI = i;
+                }
+            }
+        }
+
+        if (closestI == -1) return null;
+        return ships[closestI].transform.position;
+    }
 
     public Vector2? ShipCentroid()
     {

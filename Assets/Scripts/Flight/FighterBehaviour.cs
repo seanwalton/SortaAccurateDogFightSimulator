@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum FighterState
+{
+    OFFCAMERA,
+    NOENEMES,
+    ENEMES,
+}
+
 [RequireComponent(typeof(ShipController))]
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(FactionType))]
@@ -16,6 +23,8 @@ public class FighterBehaviour : MonoBehaviour
     private Transform myTransform;
     private Faction myFaction;
 
+    private FighterState myState;
+
     private void Awake()
     {
         myController = GetComponent<ShipController>();
@@ -27,37 +36,46 @@ public class FighterBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        UpdateTarget();
+        UpdateState();
+        UpdateTarget(myState);
     }
 
-    private void UpdateTarget()
+    private void UpdateState()
     {
-        myTarget = myRadar.ShipCentroid(myFaction);
+        if (!myRenderer.isVisible)
+        {
+            myState = FighterState.OFFCAMERA;
+            return;
+        }
 
-        if (myTarget.HasValue)
+        if (myRadar.AnyEnemys(myFaction))
         {
-            if (myRenderer.isVisible)
-            {
-                myController.SetTarget((Vector2) myTarget);
-            }
-            else
-            {
-                myController.SetTarget(cameraTransform.position);
-            }
-            
+            myState = FighterState.ENEMES;
+            return;
         }
-        else
+
+        myState = FighterState.NOENEMES;
+    }
+
+    private void UpdateTarget(FighterState state)
+    {
+        switch (state)
         {
-            if (myRenderer.isVisible)
-            {
-                myController.SetTarget(cameraTransform.position);
-            }
-            else
-            {
-                myController.SetTarget(myTransform.position);
-            }
-            
+            case FighterState.OFFCAMERA:
+                myTarget = cameraTransform.position;
+                break;
+            case FighterState.NOENEMES:
+                myTarget = myRadar.ShipCentroid(myFaction);
+                if (!myTarget.HasValue) myTarget = cameraTransform.position;
+                break;
+            case FighterState.ENEMES:
+                myTarget = myRadar.GetClosestEnemy(myFaction);
+                if (!myTarget.HasValue) myTarget = cameraTransform.position;
+                break;
         }
+
+        myController.SetTarget((Vector2)myTarget);
+        
     }
 
 }
