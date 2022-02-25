@@ -24,6 +24,7 @@ public class FighterBehaviour : MonoBehaviour
     private Faction myFaction;
 
     private FighterState myState;
+    private GunBehaviour myGun;
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class FighterBehaviour : MonoBehaviour
         myRenderer = GetComponent<SpriteRenderer>();
         myTransform = transform;
         myFaction = GetComponent<FactionType>().Faction;
+        myGun = GetComponentInChildren<GunBehaviour>();
     }
 
     private void FixedUpdate()
@@ -44,16 +46,28 @@ public class FighterBehaviour : MonoBehaviour
     {
         if (!myRenderer.isVisible)
         {
+            if (myState == FighterState.ENEMES)
+            {
+                myGun.StopFiring();
+            }
             myState = FighterState.OFFCAMERA;
             return;
         }
 
         if (myRadar.AnyEnemys(myFaction))
         {
+            if (myState != FighterState.ENEMES)
+            {
+                myGun.StartFiring();
+            }
             myState = FighterState.ENEMES;
             return;
         }
 
+        if (myState == FighterState.ENEMES)
+        {
+            myGun.StopFiring();
+        }
         myState = FighterState.NOENEMES;
     }
 

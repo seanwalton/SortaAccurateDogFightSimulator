@@ -41,7 +41,7 @@ public class GunBehaviour : MonoBehaviour
     {
         if (isFiring)
         {
-            if (nextFire > 0f)
+            if (nextFire >= 0f)
             {
                 nextFire -= Time.fixedDeltaTime;
                 if (nextFire <= 0f) FireBullet();
@@ -61,8 +61,9 @@ public class GunBehaviour : MonoBehaviour
 
     public void StartFiring()
     {
+        if (!isFiring) nextFire = 0f;
         isFiring = true;
-        nextFire = fireDelay;
+        
     }
 
     public void StopFiring()
