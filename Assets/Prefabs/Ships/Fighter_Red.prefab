@@ -61,11 +61,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8173822510830158406, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}
       propertyPath: m_Name
-      value: FighterBlue
+      value: Fighter_Red
       objectReference: {fileID: 0}
     - target: {fileID: 8173822510830158408, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 0.375
       objectReference: {fileID: 0}
+    - target: {fileID: 8481643954778307294, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 2529642410541312210, guid: b995e2ceab6e23b449f3d054e1a60712, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa4564dc197a409488ce34d5b0b622e3, type: 3}

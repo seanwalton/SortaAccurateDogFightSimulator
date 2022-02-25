@@ -14,6 +14,8 @@ public class GunBehaviour : MonoBehaviour
     private List<ProjectileBehaviour> myPool = new List<ProjectileBehaviour>();
     private int currentBullet;
     private Transform tr;
+    private float dist;
+    private float timeToTarget;
 
     private void Awake()
     {
@@ -71,6 +73,18 @@ public class GunBehaviour : MonoBehaviour
         isFiring = false;
     }
 
+    public Vector2 LeadTarget(Rigidbody2D targetRb)
+    {
+        dist = Vector2.Distance(tr.position, targetRb.transform.position);
+        timeToTarget = dist /
+            UnityEngine.Random.Range(myPool[currentBullet].myType.speed - 0.1f * myPool[currentBullet].myType.speed,
+                myPool[currentBullet].myType.speed + 0.1f * myPool[currentBullet].myType.speed);
+
+        Vector2 lead = new Vector2();           
+        lead.x = targetRb.transform.position.x + targetRb.velocity.x * timeToTarget;
+        lead.y = targetRb.transform.position.y + targetRb.velocity.y * timeToTarget;
+        return lead;
+    }
 
 
 }

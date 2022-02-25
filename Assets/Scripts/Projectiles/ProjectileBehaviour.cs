@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class ProjectileBehaviour : MonoBehaviour
 {
-    [SerializeField] private ProjectileType myType;
+    public ProjectileType myType;
 
     private Rigidbody2D rb;
     private float timeLeft;
@@ -26,7 +26,8 @@ public class ProjectileBehaviour : MonoBehaviour
 
     public void OnFire(Vector2 direction)
     {
-        rb.velocity = myType.speed * direction;
+        rb.velocity = Random.Range(myType.speed - 0.1f*myType.speed,
+            myType.speed + 0.1f * myType.speed) * direction;
         timeLeft = myType.lifetime;
     }
 

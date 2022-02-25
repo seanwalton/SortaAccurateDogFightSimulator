@@ -18,6 +18,7 @@ public class FighterBehaviour : MonoBehaviour
     [SerializeField] private RadarBehaviour myRadar;
     private ShipController myController;
     private Vector2? myTarget;
+    private Rigidbody2D myTargetRb;
     private Transform cameraTransform;
     private SpriteRenderer myRenderer;
     private Transform myTransform;
@@ -83,8 +84,15 @@ public class FighterBehaviour : MonoBehaviour
                 if (!myTarget.HasValue) myTarget = cameraTransform.position;
                 break;
             case FighterState.ENEMES:
-                myTarget = myRadar.GetClosestEnemy(myFaction);
-                if (!myTarget.HasValue) myTarget = cameraTransform.position;
+                myTargetRb = myRadar.GetClosestEnemyRb(myFaction);
+                if (myTargetRb)
+                {
+                    myTarget = myGun.LeadTarget(myTargetRb);
+                }
+                else
+                {
+                    myTarget = cameraTransform.position;
+                }
                 break;
         }
 

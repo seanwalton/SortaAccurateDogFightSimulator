@@ -34,6 +34,11 @@ public class RadarBehaviour : MonoBehaviour
     }
 
     public Vector2? GetClosestEnemy(Faction myFaction)
+    {             
+        return GetClosestEnemyGameObject(myFaction).transform.position;
+    }
+
+    private GameObject GetClosestEnemyGameObject(Faction myFaction)
     {
         dist = float.MaxValue;
         closestI = -1;
@@ -51,9 +56,21 @@ public class RadarBehaviour : MonoBehaviour
                 }
             }
         }
-
         if (closestI == -1) return null;
-        return ships[closestI].transform.position;
+        return ships[closestI];
+    }
+
+    public Rigidbody2D GetClosestEnemyRb(Faction myFaction)
+    {
+        GameObject closest = GetClosestEnemyGameObject(myFaction);
+        if (closest != null)
+        {
+            return closest.GetComponent<Rigidbody2D>();
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public Vector2? ShipCentroid()
