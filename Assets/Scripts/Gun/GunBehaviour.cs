@@ -16,6 +16,9 @@ public class GunBehaviour : MonoBehaviour
     private Transform tr;
     private float dist;
     private float timeToTarget;
+    private float perlinX;
+    private float perlinY;
+    private float perlinWavelength;
 
     private void Awake()
     {
@@ -37,12 +40,16 @@ public class GunBehaviour : MonoBehaviour
     {
         isFiring = false;
         currentBullet = 0;
+        perlinX = UnityEngine.Random.value;
+        perlinY = UnityEngine.Random.value;
+        perlinWavelength = UnityEngine.Random.value;
     }
 
     private void FixedUpdate()
     {
         if (isFiring)
         {
+            perlinX += perlinWavelength*Time.fixedDeltaTime;
             if (nextFire >= 0f)
             {
                 nextFire -= Time.fixedDeltaTime;
@@ -77,8 +84,8 @@ public class GunBehaviour : MonoBehaviour
     {
         dist = Vector2.Distance(tr.position, targetRb.transform.position);
         timeToTarget = dist /
-            UnityEngine.Random.Range(myPool[currentBullet].myType.speed - 0.1f * myPool[currentBullet].myType.speed,
-                myPool[currentBullet].myType.speed + 0.1f * myPool[currentBullet].myType.speed);
+            ((1f + 0.5f*((Mathf.PerlinNoise(perlinX, perlinY) - 0.5f)*2f))*
+            myPool[currentBullet].myType.speed);
 
         Vector2 lead = new Vector2();           
         lead.x = targetRb.transform.position.x + targetRb.velocity.x * timeToTarget;
