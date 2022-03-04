@@ -16,3 +16,4 @@ MonoBehaviour:
   damage: 5
   speed: 20
   lifetime: 15
+  mySprite: {fileID: -2251286169667279369, guid: 8774f14f32cd9dd4689bfc9bca56559c, type: 3}

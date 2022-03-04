@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class ProjectileBehaviour : MonoBehaviour
 {
     public ProjectileType myType;
@@ -12,7 +13,8 @@ public class ProjectileBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();     
+        rb = GetComponent<Rigidbody2D>();
+        GetComponent<SpriteRenderer>().sprite = myType.mySprite;
     }
 
     private void FixedUpdate()

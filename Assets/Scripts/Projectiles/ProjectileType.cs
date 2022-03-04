@@ -9,4 +9,5 @@ public class ProjectileType : ScriptableObject
     public int damage;
     public float speed;
     public float lifetime;
+    public Sprite mySprite;
 }
