@@ -10,6 +10,7 @@ public class ProjectileBehaviour : MonoBehaviour
 
     private Rigidbody2D rb;
     private float timeLeft;
+    private IAttackable isAttackable;
 
     private void Awake()
     {
@@ -36,6 +37,18 @@ public class ProjectileBehaviour : MonoBehaviour
     private void Explode()
     {
         gameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        isAttackable = collision.gameObject.GetComponent<IAttackable>();
+        Debug.Log(collision.gameObject.name);
+        if (isAttackable != null)
+        {
+            isAttackable.OnAttack(myType.damage);
+            Explode();
+        }
     }
 
 }

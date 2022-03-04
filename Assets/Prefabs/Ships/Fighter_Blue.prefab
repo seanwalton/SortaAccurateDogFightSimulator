@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 8173822510830158411}
   - component: {fileID: 8173822510830158408}
   - component: {fileID: 7496808516107735957}
+  - component: {fileID: 6363124739706594353}
   m_Layer: 3
   m_Name: Fighter_Blue
   m_TagString: Untagged
@@ -208,6 +209,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: 1
+--- !u!114 &6363124739706594353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8173822510830158406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e6dd8cf437de1144b3a6402f78a6a5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 50
+  OnKill:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &6252986040489712495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -298,7 +318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4081456411938303150, guid: c660fc9fdc38de344bb3c0cd8bf6a051, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1378
+      value: 0.268
       objectReference: {fileID: 0}
     - target: {fileID: 4081456411938303150, guid: c660fc9fdc38de344bb3c0cd8bf6a051, type: 3}
       propertyPath: m_LocalPosition.z

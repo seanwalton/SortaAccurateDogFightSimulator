@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2857624023011175652}
   - component: {fileID: 2857624023011175655}
   - component: {fileID: 2857624023011175654}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: FighterRadar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
