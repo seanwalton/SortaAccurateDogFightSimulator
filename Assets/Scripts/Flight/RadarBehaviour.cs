@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class RadarBehaviour : MonoBehaviour
 {
-    private List<GameObject> ships = new List<GameObject>();
+    private List<Rigidbody2D> ships = new List<Rigidbody2D>();
     private FactionType factionTemp;
     private Transform trTemp;
     private int numShips;
     private Vector2 centroid;
+    private Vector2 direction;
     private Transform tr;
     private float dist;
+    private float timeToTarget;
     private int closestI;
     private float distI;
+    private float closestShipDist;
 
     private void Awake()
     {
@@ -57,7 +60,7 @@ public class RadarBehaviour : MonoBehaviour
             }
         }
         if (closestI == -1) return null;
-        return ships[closestI];
+        return ships[closestI].gameObject;
     }
 
     public Rigidbody2D GetClosestEnemyRb(Faction myFaction)
@@ -72,6 +75,64 @@ public class RadarBehaviour : MonoBehaviour
             return null;
         }
     }
+
+    public Vector2? ShipCentroid(Faction faction, Rigidbody2D myRb, 
+        float mySpeed)
+    {
+        numShips = 0;
+
+        centroid = new Vector2(0f, 0f);
+        direction = new Vector2(0f, 0f);
+
+        closestShipDist = float.MaxValue;
+
+        for (int i = 0; i < ships.Count; i++)
+        {
+            factionTemp = ships[i].GetComponent<FactionType>();
+            if (factionTemp)
+            {
+                if (factionTemp.Faction == faction)
+                {
+                    trTemp = ships[i].transform;
+                    centroid.x += trTemp.position.x;
+                    centroid.y += trTemp.position.y;
+                    numShips++;
+
+                    dist = Vector2.Distance(myRb.transform.position,
+                        ships[i].transform.position);
+
+                    if (dist < closestShipDist)
+                    {
+                        direction.x = ships[i].transform.up.x;
+                        direction.y = ships[i].transform.up.y;
+                        closestShipDist = dist;
+                    }
+
+                    
+                    
+                }
+            }
+
+        }
+
+        if (numShips == 0) return null;
+
+        centroid.x /= numShips;
+        centroid.y /= numShips;
+
+        direction.x /= numShips;
+        direction.y /= numShips;
+        direction.Normalize();
+
+        dist = Vector2.Distance(myRb.transform.position, centroid);
+        timeToTarget = dist / mySpeed;
+
+        centroid.x += direction.x * timeToTarget;
+        centroid.y += direction.y * timeToTarget;
+
+        return centroid;
+    }
+
 
     public Vector2? ShipCentroid()
     {
@@ -126,18 +187,18 @@ public class RadarBehaviour : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<ShipController>())
         {
-            if (!ships.Contains(collision.gameObject))
+            if (!ships.Contains(collision.gameObject.GetComponent<Rigidbody2D>()))
             {
-                ships.Add(collision.gameObject);
+                ships.Add(collision.gameObject.GetComponent<Rigidbody2D>());
             }
         }       
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (ships.Contains(collision.gameObject))
+        if (ships.Contains(collision.gameObject.GetComponent<Rigidbody2D>()))
         {
-            ships.Remove(collision.gameObject);
+            ships.Remove(collision.gameObject.GetComponent<Rigidbody2D>());
         }
     }
 }

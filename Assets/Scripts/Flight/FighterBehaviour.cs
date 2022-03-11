@@ -12,9 +12,11 @@ public enum FighterState
 [RequireComponent(typeof(ShipController))]
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(FactionType))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(ShipController))]
 public class FighterBehaviour : MonoBehaviour
 {
-
+    [SerializeField] private int damageOnCollision;
     [SerializeField] private RadarBehaviour myRadar;
     private ShipController myController;
     private Vector2? myTarget;
@@ -26,6 +28,9 @@ public class FighterBehaviour : MonoBehaviour
 
     private FighterState myState;
     private GunBehaviour myGun;
+    private IAttackable isAttackable;
+    private Rigidbody2D myRb;
+    private ShipController myShip;
 
     private void Awake()
     {
@@ -35,6 +40,8 @@ public class FighterBehaviour : MonoBehaviour
         myTransform = transform;
         myFaction = GetComponent<FactionType>().Faction;
         myGun = GetComponentInChildren<GunBehaviour>();
+        myRb = GetComponent<Rigidbody2D>();
+        myShip = GetComponent<ShipController>();
     }
 
     private void FixedUpdate()
@@ -80,7 +87,8 @@ public class FighterBehaviour : MonoBehaviour
                 myTarget = cameraTransform.position;
                 break;
             case FighterState.NOENEMES:
-                myTarget = myRadar.ShipCentroid(myFaction);
+                myTarget = myRadar.ShipCentroid(myFaction, myRb, 
+                    myShip.maxSpeed);
                 if (!myTarget.HasValue) myTarget = cameraTransform.position;
                 break;
             case FighterState.ENEMES:
@@ -99,5 +107,7 @@ public class FighterBehaviour : MonoBehaviour
         myController.SetTarget((Vector2)myTarget);
         
     }
+
+    
 
 }

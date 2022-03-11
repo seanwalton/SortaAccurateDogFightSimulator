@@ -16,6 +16,7 @@ public class ShipController : MonoBehaviour
     private Vector2 toTarget = new Vector2();
     private Transform myTransform;
 
+    public float maxSpeed => mySpeed;
 
     public void SetTarget(Vector2 newTarget)
     {
@@ -28,10 +29,11 @@ public class ShipController : MonoBehaviour
         myTransform = transform;
     }
 
+
     private void FixedUpdate()
     {
-        UpdateVelocity();      
         UpdateRotation();
+        UpdateVelocity();      
     }
 
     private void UpdateVelocity()
@@ -47,8 +49,9 @@ public class ShipController : MonoBehaviour
         signedAngle = Vector2.SignedAngle(myForward.up, toTarget);
 
         currentRotationSpeed = signedAngle / 180f;
-        
+
         rb2D.angularVelocity = currentRotationSpeed * maxRotationSpeed;
+
     }
 
     

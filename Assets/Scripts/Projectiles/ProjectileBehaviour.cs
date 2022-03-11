@@ -43,7 +43,6 @@ public class ProjectileBehaviour : MonoBehaviour
     {
         
         isAttackable = collision.gameObject.GetComponent<IAttackable>();
-        Debug.Log(collision.gameObject.name);
         if (isAttackable != null)
         {
             isAttackable.OnAttack(myType.damage);

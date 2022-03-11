@@ -4939,9 +4939,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_LinearDrag: 0.1
+  m_AngularDrag: 0.01
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -4962,6 +4962,7 @@ MonoBehaviour:
   myForward: {fileID: 8173822509990619319}
   mySpeed: 5
   maxRotationSpeed: 100
+  thrust: 5
 --- !u!114 &8173822510830158411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4974,6 +4975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2b77c09b42d8c4ab13dfff2e19dc6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageOnCollision: 0
   myRadar: {fileID: 8173822509669005193}
 --- !u!61 &8173822510830158408
 BoxCollider2D:
