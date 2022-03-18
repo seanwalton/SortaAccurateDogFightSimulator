@@ -10,4 +10,5 @@ public class ProjectileType : ScriptableObject
     public float speed;
     public float lifetime;
     public Sprite mySprite;
+    public float accuracy;
 }

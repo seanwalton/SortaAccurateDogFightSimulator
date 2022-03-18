@@ -17,3 +17,4 @@ MonoBehaviour:
   speed: 40
   lifetime: 60
   mySprite: {fileID: -2251286169667279369, guid: 8774f14f32cd9dd4689bfc9bca56559c, type: 3}
+  accuracy: 0.9

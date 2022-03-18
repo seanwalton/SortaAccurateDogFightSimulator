@@ -11,6 +11,8 @@ public class ProjectileBehaviour : MonoBehaviour
     private Rigidbody2D rb;
     private float timeLeft;
     private IAttackable isAttackable;
+    private Vector2 newVelocity;
+
     public Transform myTransform { private set; get; }
 
     private void Awake()
@@ -31,8 +33,17 @@ public class ProjectileBehaviour : MonoBehaviour
 
     public void OnFire(Vector2 direction)
     {
-        rb.velocity = Random.Range(myType.speed - 0.1f*myType.speed,
-            myType.speed + 0.1f * myType.speed) * direction;
+        newVelocity = myType.speed * direction;
+        newVelocity.x += Random.Range(-1f * (myType.speed * (1.0f - myType.accuracy)),
+            (myType.speed * (1.0f - myType.accuracy)));
+        newVelocity.y += Random.Range(-1f * (myType.speed * (1.0f - myType.accuracy)),
+            (myType.speed * (1.0f - myType.accuracy)));
+
+        rb.velocity = newVelocity;
+        
+
+
+
         timeLeft = myType.lifetime;
     }
 
