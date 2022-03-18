@@ -38,10 +38,10 @@ public class RadarBehaviour : MonoBehaviour
 
     public Vector2? GetClosestEnemy(Faction myFaction)
     {             
-        return GetClosestEnemyGameObject(myFaction).myTransform.position;
+        return GetClosestEnemyShipController(myFaction).myTransform.position;
     }
 
-    private ShipController GetClosestEnemyGameObject(Faction myFaction)
+    public ShipController GetClosestEnemyShipController(Faction myFaction)
     {
         dist = float.MaxValue;
         closestI = -1;
@@ -65,7 +65,7 @@ public class RadarBehaviour : MonoBehaviour
 
     public Rigidbody2D GetClosestEnemyRb(Faction myFaction)
     {
-        ShipController closest = GetClosestEnemyGameObject(myFaction);
+        ShipController closest = GetClosestEnemyShipController(myFaction);
         if (closest != null)
         {
             return closest.rb2D;

@@ -16,6 +16,7 @@ public class GunBehaviour : MonoBehaviour
     private Transform tr;
     private float dist;
     private float timeToTarget;
+    private Vector2 lead;
     private float perlinX;
     private float perlinY;
     private float perlinWavelength;
@@ -60,7 +61,7 @@ public class GunBehaviour : MonoBehaviour
 
     private void FireBullet()
     {
-        myPool[currentBullet].transform.position = tr.position;
+        myPool[currentBullet].myTransform.position = tr.position;
         myPool[currentBullet].gameObject.SetActive(true);
         myPool[currentBullet].OnFire(tr.up);
         nextFire = fireDelay;
@@ -80,16 +81,16 @@ public class GunBehaviour : MonoBehaviour
         isFiring = false;
     }
 
-    public Vector2 LeadTarget(Rigidbody2D targetRb)
+    public Vector2 LeadTarget(ShipController target)
     {
-        dist = Vector2.Distance(tr.position, targetRb.transform.position);
+        dist = Vector2.Distance(tr.position, target.myTransform.position);
         timeToTarget = dist /
             ((1f + 0.5f*((Mathf.PerlinNoise(perlinX, perlinY) - 0.5f)*2f))*
             myPool[currentBullet].myType.speed);
 
-        Vector2 lead = new Vector2();           
-        lead.x = targetRb.transform.position.x + targetRb.velocity.x * timeToTarget;
-        lead.y = targetRb.transform.position.y + targetRb.velocity.y * timeToTarget;
+        lead.Set(0f, 0f);          
+        lead.x = target.myTransform.position.x + target.rb2D.velocity.x * timeToTarget;
+        lead.y = target.myTransform.position.y + target.rb2D.velocity.y * timeToTarget;
         return lead;
     }
 

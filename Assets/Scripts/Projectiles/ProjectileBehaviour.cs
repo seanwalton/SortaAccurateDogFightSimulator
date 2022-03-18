@@ -11,9 +11,11 @@ public class ProjectileBehaviour : MonoBehaviour
     private Rigidbody2D rb;
     private float timeLeft;
     private IAttackable isAttackable;
+    public Transform myTransform { private set; get; }
 
     private void Awake()
     {
+        myTransform = transform;
         rb = GetComponent<Rigidbody2D>();
         GetComponent<SpriteRenderer>().sprite = myType.mySprite;
     }
