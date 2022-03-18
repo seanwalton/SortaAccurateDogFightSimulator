@@ -64,7 +64,7 @@ public class FighterBehaviour : MonoBehaviour
         {
             if (myState != FighterState.ENEMES)
             {
-                myGun.StartFiring();
+                myGun.StartFiring(myFaction);
             }
             myState = FighterState.ENEMES;
             return;

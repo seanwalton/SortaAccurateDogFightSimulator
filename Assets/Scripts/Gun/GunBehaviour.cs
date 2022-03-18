@@ -8,6 +8,7 @@ public class GunBehaviour : MonoBehaviour
     [SerializeField] private float fireDelay;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private int projectilePoolSize;
+    [SerializeField] private LayerMask clearShotLayer;
 
     private float nextFire;
     private bool isFiring;
@@ -20,11 +21,23 @@ public class GunBehaviour : MonoBehaviour
     private float perlinX;
     private float perlinY;
     private float perlinWavelength;
+    private Faction faction;
+    private RaycastHit2D hit;
+    private FactionType otherFaction;
+    private float circleCastRadius;
 
     private void Awake()
     {
         InitalisePool();
         tr = transform;
+        CalcCircleRadius();
+    }
+
+    private void CalcCircleRadius()
+    {
+        SpriteRenderer spriteR = GetComponentInParent<SpriteRenderer>();
+
+        circleCastRadius = Mathf.Max(spriteR.bounds.size.x*0.5f, spriteR.bounds.size.y*0.5f);
     }
 
     private void InitalisePool()
@@ -61,6 +74,11 @@ public class GunBehaviour : MonoBehaviour
 
     private void FireBullet()
     {
+        if (!ClearShot())
+        {          
+            return;
+        }
+
         myPool[currentBullet].myTransform.position = tr.position;
         myPool[currentBullet].gameObject.SetActive(true);
         myPool[currentBullet].OnFire(tr.up);
@@ -69,8 +87,32 @@ public class GunBehaviour : MonoBehaviour
         if (currentBullet > projectilePoolSize - 1) currentBullet = 0;
     }
 
-    public void StartFiring()
+    public bool ClearShot()
     {
+        hit = Physics2D.CircleCast(tr.position + (circleCastRadius*tr.up), 
+            circleCastRadius, tr.up, Mathf.Infinity, clearShotLayer);
+
+        if (hit.collider != null)
+        {
+            otherFaction = hit.collider.GetComponent<FactionType>();
+            if (otherFaction)
+            {
+                return (otherFaction.Faction != faction);
+            }
+            else
+            {
+                return true;
+            }
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public void StartFiring(Faction myFaction)
+    {
+        faction = myFaction;
         if (!isFiring) nextFire = 0f;
         isFiring = true;
         

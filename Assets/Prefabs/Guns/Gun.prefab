@@ -44,3 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireDelay: 0
+  projectilePrefab: {fileID: 0}
+  projectilePoolSize: 0
+  clearShotLayer:
+    serializedVersion: 2
+    m_Bits: 8
