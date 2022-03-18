@@ -16,7 +16,6 @@ public enum FighterState
 [RequireComponent(typeof(ShipController))]
 public class FighterBehaviour : MonoBehaviour
 {
-    [SerializeField] private int damageOnCollision;
     [SerializeField] private RadarBehaviour myRadar;
     private ShipController myController;
     private Vector2? myTarget;
@@ -28,7 +27,6 @@ public class FighterBehaviour : MonoBehaviour
 
     private FighterState myState;
     private GunBehaviour myGun;
-    private IAttackable isAttackable;
     private Rigidbody2D myRb;
     private ShipController myShip;
 

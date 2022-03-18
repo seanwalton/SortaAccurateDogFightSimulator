@@ -10,11 +10,12 @@ public class ShipController : MonoBehaviour
     [SerializeField] private float maxRotationSpeed;
     
     private Vector2 myTarget = new Vector2(0f, 0f);
-    private Rigidbody2D rb2D;
+    public Rigidbody2D rb2D { private set; get; }
+    public FactionType myFaction { private set; get; }
     private float currentRotationSpeed = 0f;
     private float signedAngle;
     private Vector2 toTarget = new Vector2();
-    private Transform myTransform;
+    public Transform myTransform { private set; get; }
 
     public float maxSpeed => mySpeed;
 
@@ -26,6 +27,7 @@ public class ShipController : MonoBehaviour
     private void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        myFaction = GetComponent<FactionType>();
         myTransform = transform;
     }
 
