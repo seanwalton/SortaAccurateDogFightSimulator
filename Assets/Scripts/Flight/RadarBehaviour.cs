@@ -186,7 +186,7 @@ public class RadarBehaviour : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        ShipController newShip = collision.gameObject.GetComponent<ShipController>();
+        ShipController newShip = collision.gameObject.GetComponentInParent<ShipController>();
 
         if (newShip)
         {
@@ -199,7 +199,7 @@ public class RadarBehaviour : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        ShipController oldShip = collision.gameObject.GetComponent<ShipController>();
+        ShipController oldShip = collision.gameObject.GetComponentInParent<ShipController>();
 
         if (ships.Contains(oldShip))
         {
