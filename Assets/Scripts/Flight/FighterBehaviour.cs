@@ -28,7 +28,6 @@ public class FighterBehaviour : MonoBehaviour
     private FighterState myState;
     private GunBehaviour myGun;
     private Rigidbody2D myRb;
-    private ShipController myShip;
 
     private void Awake()
     {
@@ -39,7 +38,6 @@ public class FighterBehaviour : MonoBehaviour
         myFaction = GetComponent<FactionType>().Faction;
         myGun = GetComponentInChildren<GunBehaviour>();
         myRb = GetComponent<Rigidbody2D>();
-        myShip = GetComponent<ShipController>();
     }
 
     private void FixedUpdate()
@@ -85,8 +83,8 @@ public class FighterBehaviour : MonoBehaviour
                 myTarget = cameraTransform.position;
                 break;
             case FighterState.NOENEMES:
-                myTarget = myRadar.ShipCentroid(myFaction, myRb, 
-                    myShip.maxSpeed);
+                myTarget = myRadar.ShipCentroid(myFaction, myRb,
+                    myController.maxSpeed);
                 if (!myTarget.HasValue) myTarget = cameraTransform.position;
                 break;
             case FighterState.ENEMES:

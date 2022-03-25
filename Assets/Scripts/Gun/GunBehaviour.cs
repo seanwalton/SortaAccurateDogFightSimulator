@@ -94,7 +94,7 @@ public class GunBehaviour : MonoBehaviour
 
         if (hit.collider != null)
         {
-            otherFaction = hit.collider.GetComponent<FactionType>();
+            otherFaction = hit.collider.GetComponentInParent<FactionType>();
             if (otherFaction)
             {
                 return (otherFaction.Faction != faction);

@@ -55,7 +55,7 @@ public class ProjectileBehaviour : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
-        isAttackable = collision.gameObject.GetComponent<IAttackable>();
+        isAttackable = collision.gameObject.GetComponentInParent<IAttackable>();
         if (isAttackable != null)
         {
             isAttackable.OnAttack(myType.damage);

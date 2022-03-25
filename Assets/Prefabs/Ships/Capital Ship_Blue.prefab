@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322981624661893224}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 3.91, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4802291435651199623}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &3260555811649125078
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,8 +874,10 @@ GameObject:
   - component: {fileID: 6675964468630716241}
   - component: {fileID: 7722994248320398556}
   - component: {fileID: 8357499874158140925}
+  - component: {fileID: 2955661761806574544}
+  - component: {fileID: 1792036264554102518}
   m_Layer: 3
-  m_Name: Capital Ship
+  m_Name: Capital Ship_Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -956,5 +958,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myForward: {fileID: 8322911335770486750}
-  mySpeed: 0
-  maxRotationSpeed: 0
+  mySpeed: 0.1
+  maxRotationSpeed: 1
+--- !u!114 &2955661761806574544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188420526815465215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f811e8f46a06be46ad53a497a6d8ed2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1792036264554102518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188420526815465215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e6dd8cf437de1144b3a6402f78a6a5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 50000
+  OnKill:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
