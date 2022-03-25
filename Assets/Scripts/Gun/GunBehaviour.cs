@@ -37,7 +37,7 @@ public class GunBehaviour : MonoBehaviour
     {
         SpriteRenderer spriteR = GetComponentInParent<SpriteRenderer>();
 
-        circleCastRadius = Mathf.Max(spriteR.bounds.size.x*0.5f, spriteR.bounds.size.y*0.5f);
+        circleCastRadius = Mathf.Max(0.1f, spriteR.bounds.size.y*0.5f);
     }
 
     private void InitalisePool()

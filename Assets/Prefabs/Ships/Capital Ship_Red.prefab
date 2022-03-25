@@ -11,6 +11,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3371153558441149638, guid: e3420900af9272840855d5c08470918b, type: 3}
+      propertyPath: faction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635332353336189894, guid: e3420900af9272840855d5c08470918b, type: 3}
+      propertyPath: faction
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4802291435651199623, guid: e3420900af9272840855d5c08470918b, type: 3}
       propertyPath: m_RootOrder
       value: 0
